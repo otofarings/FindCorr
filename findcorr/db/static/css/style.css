@@ -1,0 +1,183 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: rgb(245, 246, 250);
+}
+
+a {
+    color: #0080ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для шапки */
+h1 {
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(22, 24, 59);
+    color: #ffffff;
+}
+
+#sidebar {
+    float: left;
+    width: 250px;
+    height: 100%;
+    background-color: rgb(245, 246, 250);
+    padding: 20px;
+    overflow: auto;
+}
+
+#content {
+    margin-left: 270px; /* Отступ слева, чтобы оставить место для боковой панели */
+    padding: 20px;
+    background-color: rgb(245, 246, 250);
+    color: #000000;
+}
+
+.search-form {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    flex-grow: 1;
+    margin-right: 10px;
+    height: 40px;
+    border: none;
+}
+
+.search-form input[type="submit"] {
+    border: none;
+    background-color: rgb(245, 246, 250);
+}
+
+.search-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    height: 40px;
+    padding-left: 30px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.dropdown {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dropdown label {
+    margin-right: 10px;
+}
+
+.dropdown select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Стили для таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Четные строки таблицы */
+table tr:nth-child(even) {
+    background-color: rgb(245, 246, 250);
+}
+
+/* Нечетные строки таблицы */
+table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Заголовок таблицы */
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: rgb(229, 240, 254);
+    color: rgb(79, 82, 110);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.status {
+    border-radius: 10px;
+    padding: 5px;
+    color: black;
+    background-color: rgb(255, 255, 255);
+}
+
+.status.weak {
+    color: rgb(101, 101, 101);
+    background-color: rgba(207, 204, 204, 0.5);
+}
+
+.status.strong {
+    color: maroon;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.status.medium {
+    color: darkgreen;
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    flex-direction: row;
+}
+
+.pagination-button {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    background-color: #f8f9fa;
+    color: #343a40;
+    text-align: center;
+    line-height: 30px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination-button:hover {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+.pagination-button.current {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+.pagination-ellipsis {
+    margin: 0 10px;
+}
+
+.footer {
+    margin-top: 20px;
+    padding: 20px;
+    height: 25px;
+    background-color: rgb(22, 24, 59);
+    color: #ffffff;
+    text-align: center;
+}

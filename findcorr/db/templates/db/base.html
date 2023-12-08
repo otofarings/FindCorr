@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru"></html>
+<head>
+    <meta charset="UTF-8">
+    <title>Корреляция инструментов</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FindCorr</h1>
+        </div>
+        <div class="sidebar", id="sidebar">
+            <div class="menu">
+                <ul>
+                    <li><a>Парная корреляция</a></li>
+                    <li><a>Портфельная корреляция</a></li>
+                    <li><a>Торговые сигналы</a></li>
+                    <li><a>Бэктестирование</a></li>
+                    <li><a>Моя торговая стратегия</a></li>
+                    <li><a>Отчеты</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content", id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="footer">
+            <p>FindCorr© 2023</p>
+    </div>
+</body>
+</html>
