@@ -23,24 +23,14 @@ h1 {
     color: #ffffff;
 }
 
-#sidebar {
-    float: left;
-    width: 250px;
-    height: 100%;
-    background-color: rgb(245, 246, 250);
-    padding: 20px;
-    overflow: auto;
-}
-
 #content {
-    margin-left: 270px; /* Отступ слева, чтобы оставить место для боковой панели */
     padding: 20px;
     background-color: rgb(245, 246, 250);
     color: #000000;
 }
 
 .search-form, .dropdown {
-    flex: 1 0 200px; /* Это установит базовую ширину в 200px и позволит элементам расти и сжиматься */
+    flex: 1 0 200px;
 }
 
 .search-form {
@@ -89,9 +79,12 @@ h1 {
 }
 
 .ticker-count-info {
-    position: absolute;
-    top: 0;
-    right: 0 !important;;
+    position: flex;
+    align-items: right;
+    padding: 2px;
+    margin-bottom: 1px;
+    padding-left: 50px;
+    color: rgb(101, 101, 101);
 }
 
 /* Стили для таблицы */
@@ -137,18 +130,18 @@ table th {
 }
 
 .status.weak {
-    color: rgb(101, 101, 101);
-    background-color: rgba(207, 204, 204, 0.5);
-}
-
-.status.strong {
     color: maroon;
     background-color: rgba(255, 0, 0, 0.5);
 }
 
-.status.medium {
+.status.strong {
     color: darkgreen;
     background-color: rgba(0, 128, 0, 0.5);
+}
+
+.status.medium {
+    color: rgb(101, 101, 101);
+    background-color: rgba(207, 204, 204, 0.5);
 }
 
 .pagination {
@@ -192,4 +185,20 @@ table th {
     background-color: rgb(22, 24, 59);
     color: #ffffff;
     text-align: center;
+}
+
+.back-button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 5px 5px; 
+    text-decoration: none;  /* убираем подчеркивание у ссылки */
+    font-size: 15px; 
+    margin: 10px; 
+    transition: background-color 0.3s ease;  /* плавное изменение цвета фона при наведении */
+}
+
+.back-button:hover {
+    background-color: #0056b3; 
+    border-color: #0056b3; 
 }

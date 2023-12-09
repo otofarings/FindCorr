@@ -23,28 +23,34 @@
                     <option value="{{ industry }}" {% if request.GET.industry == industry %}selected{% endif %}>{{ industry }}</option>
                 {% endfor %}
             </select>
-        </div>
-        <div class="ticker-count-info">
-            Доступно: {{ correlations.paginator.count }}
+            <div class="ticker-count-info">Доступно: {{ correlations.paginator.count }}</div>
         </div>
     </form>
     <table>
         <tr>
-            <th>Тикер A</th>
-            <th>Название A</th>
-            <th>Отрасль A</th>
-            <th>Тикер Б</th>
-            <th>Название Б</th>
-            <th>Отрасль Б</th>
-            <th>Корреляция %</th>
-            <th>Статус</th>
+            <th><a href="?sort=ticker_a&direction={% if request.GET.sort == 'ticker_a' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Тикер A</a></th>
+            <th><a href="?sort=name_a&direction={% if request.GET.sort == 'name_a' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Название A</a></th>
+            <th><a href="?sort=sector_a&direction={% if request.GET.sort == 'sector_a' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Отрасль A</a></th>
+            <th><a href="?sort=ticker_b&direction={% if request.GET.sort == 'ticker_b' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Тикер Б</a></th>
+            <th><a href="?sort=name_b&direction={% if request.GET.sort == 'name_b' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Название Б</a></th>
+            <th><a href="?sort=sector_b&direction={% if request.GET.sort == 'sector_b' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Отрасль Б</a></th>
+            <th><a href="?sort=correlation&direction={% if request.GET.sort == 'correlation' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Корреляция</a></th>
+            <th><a href="?sort=status&direction={% if request.GET.sort == 'status' and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">Статус</a></th>
         </tr>
         {% for group in correlations %}
         <tr>
-            <td class="bold">{{ group.ticker_a }}</td>
+            <td class="bold">
+                <a href="{% url 'db:corr' ticker_a=group.ticker_a ticker_b=group.ticker_b %}">
+                    {{ group.ticker_a }}
+                </a>
+            </td>
             <td>{{ group.name_a }}</td>
             <td>{{ group.sector_a }}</td>
-            <td class="bold">{{ group.ticker_b }}</td>
+            <td class="bold">
+                <a href="{% url 'db:corr' ticker_a=group.ticker_a ticker_b=group.ticker_b %}">
+                    {{ group.ticker_b }}
+                </a>
+            </td>
             <td>{{ group.name_b }}</td>
             <td>{{ group.sector_b }}</td>
             <td>{{ group.correlation }}</td>
@@ -52,7 +58,6 @@
         </tr>
         {% endfor %}
     </table>
-
     <div class="pagination">
         {% if correlations.has_previous %}
             <a class="pagination-button" href="?page={{ correlations.previous_page_number }}&industry={{ selected_industry }}">←</a>

@@ -6,5 +6,5 @@ app_name = 'db'
 
 urlpatterns = [
     path('', views.corr_lst, name='corr_lst'),
-    path('<str:ticker>/', views.corr, name='corr'),
+    path('corr/<str:ticker_a>/<str:ticker_b>/', views.corr, name='corr'),
 ]

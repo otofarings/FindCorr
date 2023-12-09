@@ -1,0 +1,106 @@
+{% extends 'db/base.html' %}
+
+{% block content %}
+    <div class="ticker-detail">
+        <h1>{{ correlation.ticker_a }} & {{ correlation.ticker_b }}</h1>
+        <p><b>Отрасль:</b> {{ correlation.sector_a }}</p>
+        <p><b>Корреляция:</b> {{ correlation.correlation }}</p>
+    </div>
+    <div id="chart-container">
+        <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <script>
+            var lst_index = {{ lst_index|safe }};
+            var ohlc_a = {{ ohlc_a|safe }};
+            var ohlc_b = {{ ohlc_b|safe }};
+            var spread_scaled = {{ spread_scaled|safe }};
+            var spread_medium = {{ spread_medium|safe }};
+        </script>
+        <script>
+            var trace1 = {
+                name: '{{ correlation.ticker_a }}',
+                x: lst_index, 
+                y: ohlc_a,
+                mode: 'lines',
+                type: 'scatter',
+                line: {
+                    dash: 'dot',
+                    color: 'rgba(0, 128, 0, 0.5)',
+                    width: 2
+                }
+            };
+
+            var trace2 = {
+                name: '{{ correlation.ticker_b }}',
+                x: lst_index, 
+                y: ohlc_b, 
+                mode: 'lines',
+                type: 'scatter',
+                line: {
+                    color: 'rgba(255, 0, 0, 0.5)',
+                    width: 2
+                }
+            };
+
+            var trace3 = {
+                name: 'Спред',
+                x: lst_index, 
+                y: spread_scaled, 
+                mode: 'lines',
+                type: 'scatter',
+                line: {
+                    dash: 'dashdot',
+                    color: 'rgba(255, 128, 0, 0.5)',
+                    width: 2
+                }
+            };
+
+            var trace4 = {
+                name: 'Лин. регрессия',
+                x: lst_index, 
+                y: spread_medium,  
+                mode: 'lines',
+                type: 'scatter',
+                line: {
+                    dash: 'solid',
+                    color: 'rgba(0, 128, 255, 0.5)',
+                    width: 2
+                }
+            };
+
+            var data = [ trace1, trace2, trace3, trace4 ];
+
+            var layout = {
+                paper_bgcolor: 'rgb(245, 246, 250)',
+                plot_bgcolor: 'rgb(245, 246, 250)',
+                title: {
+                    text: '{{ title }}',
+                    font: {
+                        weight: 'bold',
+                        size: 24
+                    },
+                },
+                height: 700,
+                xaxis: {
+                    showgrid: false,
+                    zeroline: false
+                },
+                yaxis: {
+                    showgrid: false,
+                    zeroline: false,
+                    showline: false,
+                    showticklabels: false
+                },
+                legend: {
+                    height: 100,
+                    yref: 'paper',
+                    font: {
+                        size: 16
+                    },
+                }
+            };
+
+            Plotly.newPlot('myDiv', data, layout);
+        </script>
+    </div>
+    <a href="{% url 'db:corr_lst' %}" class="back-button">Назад</a>
+{% endblock %}

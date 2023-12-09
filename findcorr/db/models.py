@@ -1,6 +1,27 @@
 from django.db import models
 
 
+class Candles(models.Model):
+    candles_id = models.AutoField(primary_key=True)
+    secid = models.CharField(max_length=20)
+    pr_open = models.DateTimeField()
+    pr_close = models.DateTimeField()
+    pr_high = models.FloatField()
+    pr_low = models.FloatField()
+    val = models.FloatField()
+    vol = models.FloatField()
+    begin_dt = models.DateTimeField()
+    end_dt = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'candles'
+        ordering = ('candles_id',)
+    
+    def __str__(self):
+        return self.secid
+
+
 class Correlation(models.Model):
     id = models.AutoField(primary_key=True)
     ticker_A = models.CharField(max_length=20)
@@ -79,14 +100,22 @@ class CorrelationsFullDB(models.Model):
         db_table = 'correlations_full'
 
 
+class CandlesDB(models.Model):
+    description = models.CharField(max_length=255, null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'candles'
+
+
 class AlgoPackDBRouter(object):
     def db_for_read(self, model, **hints):
-        if model in [Correlation, Ticker, CorrelationFull]:
+        if model in [Correlation, Ticker, CorrelationFull, Candles]:
             return 'algo_pack'
         return None
 
     def db_for_write(self, model, **hints):
-        if model in [Correlation, Ticker, CorrelationFull]:
+        if model in [Correlation, Ticker, CorrelationFull, Candles]:
             return 'algo_pack'
         return None
 
