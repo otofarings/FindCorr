@@ -1,0 +1,14 @@
+prefix=/Users/mac/dev/pet/FindCorr/fc_env
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libpq
+Description: PostgreSQL libpq library
+URL: https://www.postgresql.org/
+Version: 16.1
+Requires: 
+Requires.private: libssl, libcrypto
+Cflags: -I${includedir}
+Libs: -L${libdir} -lpq
+Libs.private: -L/Users/mac/dev/pet/FindCorr/fc_env/lib -lpgcommon -lpgport -lssl -lgssapi_krb5 -lm
