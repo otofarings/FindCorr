@@ -5,6 +5,22 @@
     <meta charset="UTF-8">
     <title>Корреляция инструментов</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .menu-item {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: black;
+            background-color: rgb(245, 246, 250);
+            border-bottom: 1px solid #ccc;
+        }
+
+        .menu-item:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -13,14 +29,12 @@
         </div>
         <div class="sidebar", id="sidebar">
             <div class="menu">
-                <ul>
-                    <li><a>Парная корреляция</a></li>
-                    <li><a>Портфельная корреляция</a></li>
-                    <li><a>Торговые сигналы</a></li>
-                    <li><a>Бэктестирование</a></li>
-                    <li><a>Моя торговая стратегия</a></li>
-                    <li><a>Отчеты</a></li>
-                </ul>
+                <a href="#" class="menu-item">Парная корреляция</a>
+                <a href="#" class="menu-item">Портфельная корреляция</a>
+                <a href="#" class="menu-item">Торговые сигналы</a>
+                <a href="#" class="menu-item">Бэктестирование</a>
+                <a href="#" class="menu-item">Моя торговая стратегия</a>
+                <a href="#" class="menu-item">Отчеты</a>
             </div>
         </div>
         <div class="content", id="content">

@@ -1,7 +1,7 @@
 {% extends 'db/base.html' %}
 
 {% block content %}
-    <form method="GET">
+    <form method="GET" class="form-container">
         <div class="search-form">
             <input type="text" name="q" class="search-input" placeholder="Поиск по тикеру" value="{{ request.GET.q }}">
             <input type="submit" value="🔍">
@@ -23,6 +23,9 @@
                     <option value="{{ industry }}" {% if request.GET.industry == industry %}selected{% endif %}>{{ industry }}</option>
                 {% endfor %}
             </select>
+        </div>
+        <div class="ticker-count-info">
+            Доступно: {{ correlations.paginator.count }}
         </div>
     </form>
     <table>

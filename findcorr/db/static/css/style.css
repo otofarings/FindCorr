@@ -39,6 +39,10 @@ h1 {
     color: #000000;
 }
 
+.search-form, .dropdown {
+    flex: 1 0 200px; /* Это установит базовую ширину в 200px и позволит элементам расти и сжиматься */
+}
+
 .search-form {
     width: 100%;
     display: flex;
@@ -80,6 +84,14 @@ h1 {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.ticker-count-info {
+    position: absolute;
+    top: 0;
+    right: 0 !important;;
 }
 
 /* Стили для таблицы */
