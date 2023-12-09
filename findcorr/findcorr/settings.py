@@ -3,9 +3,7 @@ import os
 from pathlib import Path
 
 
-dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
-if os.path.exists(dotenv_path):
-    load_dotenv(dotenv_path)
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,7 +15,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["findcorr.ru", "www.findcorr.ru"]
+ALLOWED_HOSTS = ["findcorr.ru", "www.findcorr.ru", "127.0.0.1"]
 
 
 # Application definition

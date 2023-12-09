@@ -1,19 +1,30 @@
 {% extends 'db/base.html' %}
 
 {% block content %}
-    <form method="GET" class="search-form">
-        <input type="text" name="q" class="search-input" placeholder="Поиск по тикеру" value="{{ request.GET.q }}">
-        <input type="submit" value="🔍">
+    <form method="GET">
+        <div class="search-form">
+            <input type="text" name="q" class="search-input" placeholder="Поиск по тикеру" value="{{ request.GET.q }}">
+            <input type="submit" value="🔍">
+        </div>
+        <div class="dropdown">
+            <label for="industry">Отрасль:</label>
+            <select id="industry" name="industry" onchange="this.form.submit()">
+                <option value="">
+                    {% if request.GET.industry %}
+                        {{ request.GET.industry }}
+                    {% else %}
+                        Все
+                    {% endif %}
+                </option>
+                {% for industry in industries %}
+                    {% if forloop.first and request.GET.industry %}
+                        <option value="">Все</option>
+                    {% endif %}
+                    <option value="{{ industry }}" {% if request.GET.industry == industry %}selected{% endif %}>{{ industry }}</option>
+                {% endfor %}
+            </select>
+        </div>
     </form>
-    <div class="dropdown">
-        <label for="industry">Отрасль:</label>
-        <select id="industry" name="industry">
-            <option value="">Все</option>
-            {% for industry in industries %}
-                <option value="{{ industry }}">{{ industry }}</option>
-            {% endfor %}
-        </select>
-    </div>
     <table>
         <tr>
             <th>Тикер A</th>
@@ -41,16 +52,16 @@
 
     <div class="pagination">
         {% if correlations.has_previous %}
-            <a class="pagination-button" href="?page={{ correlations.previous_page_number }}">←</a>
+            <a class="pagination-button" href="?page={{ correlations.previous_page_number }}&industry={{ selected_industry }}">←</a>
         {% endif %}
-
+    
         {% for i in correlations.paginator.page_range %}
             {% if correlations.number == i %}
-                <a class="pagination-button current" href="?page={{ i }}">{{ i }}</a>
+                <a class="pagination-button current" href="?page={{ i }}&industry={{ selected_industry }}">{{ i }}</a>
             {% elif i > correlations.number|add:"-5" and i < correlations.number|add:"5" %}
-                <a class="pagination-button" href="?page={{ i }}">{{ i }}</a>
+                <a class="pagination-button" href="?page={{ i }}&industry={{ selected_industry }}">{{ i }}</a>
             {% elif i == 1 %}
-                <a class="pagination-button" href="?page={{ i }}">{{ i }}</a>
+                <a class="pagination-button" href="?page={{ i }}&industry={{ selected_industry }}">{{ i }}</a>
                 {% if correlations.number > 6 %}
                     <span class="pagination-ellipsis">...</span>
                 {% endif %}
@@ -58,12 +69,12 @@
                 {% if correlations.number|add:"5" < correlations.paginator.num_pages %}
                     <span class="pagination-ellipsis">...</span>
                 {% endif %}
-                <a class="pagination-button" href="?page={{ i }}">{{ i }}</a>
+                <a class="pagination-button" href="?page={{ i }}&industry={{ selected_industry }}">{{ i }}</a>
             {% endif %}
         {% endfor %}
-
+    
         {% if correlations.has_next %}
-        <a class="pagination-button" href="?page={{ correlations.next_page_number }}">→</a>
+        <a class="pagination-button" href="?page={{ correlations.next_page_number }}&industry={{ selected_industry }}">→</a>
         {% endif %}
     </div>
 {% endblock %}
